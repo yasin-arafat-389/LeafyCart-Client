@@ -4,6 +4,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Badge, Drawer } from "@material-tailwind/react";
 import { useState } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { useAppSelector } from "../redux/hooks";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -11,8 +12,10 @@ const Navbar = () => {
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
 
+  const cartCount = useAppSelector((state) => state.cart.count);
+
   return (
-    <div className="flex justify-between items-center bg-[#D6EFD8] py-3 px-10 md:px-10 lg:px-20 shadow-xl sticky top-0 z-10">
+    <div className="flex justify-between items-center bg-[#D6EFD8] py-3 px-10 md:px-10 lg:px-20 shadow-xl sticky top-0 z-20">
       <img src={logo} className="w-[120px] md:w-[170px] lg:w-[170px]" />
 
       <div className="hidden md:hidden lg:flex gap-7 justify-center items-center text-lg font-bold">
@@ -20,7 +23,7 @@ const Navbar = () => {
         <NavLink to={"/products"}>Products</NavLink>
         <NavLink to={"/management"}>Management</NavLink>
         <NavLink to={"/cart"}>
-          <Badge content="5">
+          <Badge content={cartCount}>
             <HiOutlineShoppingBag size={"30"} />
           </Badge>
         </NavLink>
@@ -59,7 +62,7 @@ const Navbar = () => {
             </NavLink>
 
             <NavLink onClick={closeDrawer} to={"/cart"}>
-              <Badge content="5">
+              <Badge content={cartCount}>
                 <HiOutlineShoppingBag size={"30"} />
               </Badge>
             </NavLink>

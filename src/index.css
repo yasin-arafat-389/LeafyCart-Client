@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .active {
-  background-color: #80af81;
+  background-color: #508d4e;
   padding: 5px 10px;
   color: white;
   border-radius: 10px;

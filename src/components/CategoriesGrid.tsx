@@ -2,6 +2,7 @@ import indoorPlants from "../assets/indoor-plants.jpg";
 import outdoorPlants from "../assets/outdoor-tree.jpeg";
 import fruitPlants from "../assets/fruit-tree.jpg";
 import flowerPlants from "../assets/flowering-tree.webp";
+import { Link } from "react-router-dom";
 
 const CategoriesGrid = () => {
   return (
@@ -17,8 +18,8 @@ const CategoriesGrid = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
-            <a
-              href="#"
+            <Link
+              to={`/category/Indoor Plants`}
               className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80"
             >
               <img
@@ -33,10 +34,10 @@ const CategoriesGrid = () => {
               <span className="relative bg-[#508D4E] p-2 rounded-lg ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">
                 Indoor Plants
               </span>
-            </a>
+            </Link>
 
-            <a
-              href="#"
+            <Link
+              to={`/category/Outdoor Trees`}
               className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80"
             >
               <img
@@ -51,10 +52,10 @@ const CategoriesGrid = () => {
               <span className="relative ml-4 bg-[#508D4E] p-2 rounded-lg mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">
                 Outdoor Trees
               </span>
-            </a>
+            </Link>
 
-            <a
-              href="#"
+            <Link
+              to={`/category/Fruit Bearing Trees`}
               className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80"
             >
               <img
@@ -69,10 +70,10 @@ const CategoriesGrid = () => {
               <span className="relative ml-4 bg-[#508D4E] p-2 rounded-lg mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">
                 Fruit-Bearing Trees
               </span>
-            </a>
+            </Link>
 
-            <a
-              href="#"
+            <Link
+              to={`/category/Flower Trees`}
               className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80"
             >
               <img
@@ -87,7 +88,7 @@ const CategoriesGrid = () => {
               <span className="relative ml-4 bg-[#508D4E] p-2 rounded-lg mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">
                 Flowering Trees
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

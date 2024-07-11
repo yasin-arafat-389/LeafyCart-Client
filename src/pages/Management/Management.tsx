@@ -7,8 +7,20 @@ import UpdateModal from "../../components/Modals/UpdateModal";
 import AddProductModal from "../../components/Modals/AddProductModal";
 import { useGetAllProductsQuery } from "../../redux/features/product/getAllProducts";
 import Loader from "../../components/Loader";
+import Swal from "sweetalert2";
+import { useDeleteProductMutation } from "../../redux/features/product/deleteProduct";
+import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 
 const Management = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const { data, isLoading: isProductsLoading } = useGetAllProductsQuery({
+    page: currentPage,
+    limit: 6,
+  });
+
+  const [deleteProduct] = useDeleteProductMutation();
+
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [productToUpdate, setProductToUpdate] = useState("");
 
@@ -21,12 +33,39 @@ const Management = () => {
   const handleAddProductModal = () =>
     setOpenAddProductModal(!openAddProductModal);
 
-  const { data, isLoading: isProductsLoading } =
-    useGetAllProductsQuery(undefined);
+  const handleDeleteProduct = async (item: { _id: any; title: string }) => {
+    Swal.fire({
+      title: `Are you sure you want to delete ${item.title}?`,
+      text: "",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await deleteProduct(item._id);
+
+        Swal.fire({
+          title: "Product has been deleted",
+          text: "",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   if (isProductsLoading) {
     return <Loader />;
   }
+
+  const totalPage = Math.ceil(data?.data?.total / 6);
+  const pages = [...new Array(totalPage).fill(0)];
+
+  const handlePagination = (page: number) => {
+    setCurrentPage(page + 1);
+    window.scrollTo(0, 200);
+  };
 
   return (
     <div>
@@ -102,9 +141,9 @@ const Management = () => {
                     </tr>
                   </thead>
                   <tbody className="text-sm divide-y divide-gray-100">
-                    {data.data.length === 0
+                    {data.data.data.length === 0
                       ? null
-                      : data.data.map((item: any, index: number) => (
+                      : data.data.data.map((item: any, index: number) => (
                           <tr key={index}>
                             <td className="p-2 whitespace-nowrap">
                               <div className="flex items-center justify-center">
@@ -161,6 +200,7 @@ const Management = () => {
                               </Button>
 
                               <Button
+                                onClick={() => handleDeleteProduct(item)}
                                 size="sm"
                                 className="capitalize bg-red-600"
                                 placeholder={undefined}
@@ -174,6 +214,55 @@ const Management = () => {
                         ))}
                   </tbody>
                 </table>
+
+                <div
+                  className={`flex items-center justify-center gap-3 w-[80%] mx-auto mt-10`}
+                >
+                  <Button
+                    variant="text"
+                    className="hidden md:flex lg:flex items-center gap-2 text-lg capitalize"
+                    onClick={() => {
+                      setCurrentPage(currentPage - 1);
+                      window.scrollTo(0, 200);
+                    }}
+                    disabled={currentPage === 1}
+                    placeholder={undefined}
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
+                  >
+                    <GrFormPreviousLink size={"30"} />
+                    Previous
+                  </Button>
+
+                  {pages.map((_item, index) => (
+                    <button
+                      key={index}
+                      className={` px-3 py-1 font-bold text-[12px] md:text-[18px] lg:text-[18px] hover:bg-[#2121211a] rounded-lg ${
+                        currentPage === index + 1
+                          ? "bg-[#508D4E] text-white rounded-lg hover:!bg-[#1A5319]"
+                          : "bg-transparent"
+                      }`}
+                      onClick={() => handlePagination(index)}
+                    >
+                      {index + 1}
+                    </button>
+                  ))}
+                  <Button
+                    variant="text"
+                    className="hidden md:flex lg:flex items-center gap-2 text-lg capitalize"
+                    onClick={() => {
+                      setCurrentPage(currentPage + 1);
+                      window.scrollTo(0, 200);
+                    }}
+                    disabled={currentPage === totalPage}
+                    placeholder={undefined}
+                    onPointerEnterCapture={undefined}
+                    onPointerLeaveCapture={undefined}
+                  >
+                    Next
+                    <GrFormNextLink size={"30"} />
+                  </Button>
+                </div>
 
                 <UpdateModal
                   open={openUpdateModal}
