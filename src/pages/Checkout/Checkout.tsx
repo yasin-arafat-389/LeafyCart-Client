@@ -78,7 +78,7 @@ const Checkout = () => {
 
       <div className="py-20 bg-[#EEEDEB]">
         <div
-          className="w-[40%] mx-auto bg-[#D6EFD8] rounded shadow flex flex-col justify-between p-3"
+          className="w-[80%] md:w-[40%] mx-auto bg-[#D6EFD8] rounded shadow flex flex-col justify-between p-3"
           id="login"
         >
           <form onSubmit={handlePlaceOrder}>

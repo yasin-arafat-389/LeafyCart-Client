@@ -99,7 +99,7 @@ const Products = () => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="outline-none px-7 rounded-lg bg-[#D6EFD8] border border-[#1A5319]"
+            className="outline-none px-7 py-2 md:py-0 rounded-lg bg-[#D6EFD8] border border-[#1A5319]"
           >
             <option value="" disabled>
               Sort By
@@ -111,7 +111,7 @@ const Products = () => {
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="outline-none px-7 rounded-lg bg-[#D6EFD8] border border-[#1A5319]"
+            className="outline-none px-7 py-2 md:py-0 rounded-lg bg-[#D6EFD8] border border-[#1A5319]"
           >
             <option value="" disabled>
               Filter By
