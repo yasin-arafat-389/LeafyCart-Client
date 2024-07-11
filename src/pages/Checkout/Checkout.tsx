@@ -46,7 +46,15 @@ const Checkout = () => {
 
     const result = await placeOrder(payload);
 
-    console.log(result);
+    if (result.error) {
+      Swal.fire({
+        title: "Opps..!!",
+        text: "One or more product in your cart may have been stocked out..!!",
+        icon: "warning",
+      });
+
+      return;
+    }
 
     Swal.fire({
       title: "Order placed Successfully!!",

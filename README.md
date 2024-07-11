@@ -1,30 +1,74 @@
-# React + TypeScript + Vite
+# LeafyCart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+This project is the frontend part of an application, providing users with the ability to browse products, add them to the cart, and proceed to checkout.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Description
 
-## Expanding the ESLint configuration
+The frontend of this E-commerce application is built to deliver a seamless shopping experience. It includes functionalities such as product listing, search, filtering, cart management, and checkout process. The goal is to provide a user-friendly interface for customers to easily navigate and purchase products.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- Browse a list of products
+- Search for products by name or category
+- Filter products by various criteria
+- Add products to the cart
+- View cart details
+- Proceed to checkout
+- Place an order
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Technology Stack
+
+- React
+- Redux Toolkit
+- React Router
+- Tailwind CSS
+- SweetAlert2
+
+## Installation Guideline
+
+### Prerequisites
+
+- Node.js (version 14 or above)
+- npm (version 6 or above) or yarn (version 1.22 or above)
+
+### Installation Steps
+
+1. **Clone the repository**
+
+   ```sh
+   https://github.com/yasin-arafat-389/LeafyCart-Client
+   ```
+
+   2. **Navigate to the project directory**
+
+   ```sh
+   cd LeafyCart-Client
+
+   ```
+
+   3. **Install the dependencies**
+
+   ```sh
+   npm install
+   ```
+
+### Configuration
+
+1.  **Replace base URL according to your local machine**
+
+```sh
+const baseQuery = fetchBaseQuery({
+baseUrl: "http://localhost:5000/api/v1",
+});
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Usage
+
+1.  **Start the development server**
+
+```sh
+npm run dev
+
+```
